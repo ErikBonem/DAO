@@ -3,7 +3,7 @@ package jm.task.core.jdbc.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 public class Util {
 
@@ -11,11 +11,11 @@ public class Util {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "Qazwazraz12";
 
-    private static Statement statement;
-    private static Connection connection;
     public Connection getConnection(){
+        Connection connection;
         try{
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            connection.setAutoCommit(false);
             System.out.println("Connection OK");
 
         } catch (SQLException e) {
