@@ -3,9 +3,7 @@ package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
-import jm.task.core.jdbc.util.Util;
 
-import java.sql.*;
 
 public class Main {
 
@@ -23,9 +21,9 @@ public class Main {
 
         userDao.removeUserById(1);
         System.out.println( userDao.getAllUsers());
-//        userDao.cleanUsersTable();
-//        userDao.dropUsersTable();
+        userDao.cleanUsersTable();
+        userDao.dropUsersTable();
 
-//
+
     }
 }
