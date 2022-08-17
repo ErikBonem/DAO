@@ -19,9 +19,15 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             statement = con.createStatement();
             statement.executeUpdate("CREATE TABLE IF NOT exists Users (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), lastName VARCHAR(255), age INT)");
-
+            con.commit();
         } catch (SQLException e) {
+            try {
+                con.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             throw new RuntimeException(e);
+
         }
     }
 
@@ -29,8 +35,15 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             statement = con.createStatement();
             statement.executeUpdate("DROP TABLE IF EXISTS Users");
+            con.commit();
         } catch (SQLException e) {
+            try {
+                con.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             throw new RuntimeException(e);
+
         }
     }
 
@@ -41,8 +54,13 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
             preparedStatement.executeUpdate();
-
+            con.commit();
         } catch (SQLException e) {
+            try {
+                con.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             throw new RuntimeException(e);
         }
     }
@@ -52,8 +70,15 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement = con.prepareStatement("DELETE FROM Users WHERE id = ?");
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
+            con.commit();
         } catch (SQLException e) {
+            try {
+                con.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             throw new RuntimeException(e);
+
         }
     }
 
@@ -76,7 +101,13 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             statement = con.createStatement();
             statement.executeUpdate("TRUNCATE TABLE Users");
+            con.commit();
         } catch (SQLException e) {
+            try {
+                con.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             throw new RuntimeException(e);
         }
     }

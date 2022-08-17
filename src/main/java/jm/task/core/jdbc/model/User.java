@@ -60,7 +60,6 @@ public class User {
         this.age = age;
     }
 
-
     @Override
     public String toString() {
         return String.format("User {id = '%s', name = '%s', lastName = '%s', age = '%d'}", getId(), getName(), getLastName(), getAge());
