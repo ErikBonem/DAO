@@ -11,9 +11,7 @@ public class UserDaoJDBCImpl implements UserDao {
     private final static Connection con = (new Util()).getConnection();
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
-
     public UserDaoJDBCImpl() {
-
     }
 
     public void createUsersTable() {
@@ -34,8 +32,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public void saveUser(String name, String lastName, byte age) {
@@ -49,7 +45,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void removeUserById(long id) {
@@ -60,8 +55,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public List<User> getAllUsers() {
@@ -69,7 +62,6 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             ResultSet resultSet = con.createStatement().executeQuery("SELECT * FROM Users");
             while (resultSet.next()){
-                int i = 0;
                 User user = new User((resultSet.getString("name")), resultSet.getString("lastName"), resultSet.getByte("age"));
                 user.setId(resultSet.getLong("id"));
                 users.add(user);
