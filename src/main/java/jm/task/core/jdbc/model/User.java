@@ -4,10 +4,24 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Users")
+@NamedNativeQueries({
+        @NamedNativeQuery(
+        name = "getAllUsers",
+        query = "SELECT * FROM Users",
+        resultClass = User.class
+        ),
+        @NamedNativeQuery(
+        name = "cleanUsersTable",
+        query = "Delete From users",
+        resultClass = User.class
+        )
+})
+
 public class User {
     @Id
     @Column
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+
     private Long id;
 
     @Column
