@@ -36,6 +36,7 @@ public class Util {
         prop.setProperty("hibernate.connection.password", PASSWORD);
         prop.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
         prop.setProperty("show_sql", "true");
+        prop.setProperty("hibernate.connection.autocommit", "false");
         SessionFactory sessionFactory = new Configuration().addProperties(prop).addAnnotatedClass(User.class).buildSessionFactory();
         Session session = sessionFactory.openSession();
         return session;
